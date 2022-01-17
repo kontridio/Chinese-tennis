@@ -118,7 +118,7 @@ function render() {
 
     drawCircle(ball.x, ball.y, ball.radius, ball.color);
 
-    if (user.score == 15 || AI.score == 15) {
+    if (AI.score == 15) {
         console.log("Game Over");
         end.play();
         /*window.location.href = "../gamover.html";*/
