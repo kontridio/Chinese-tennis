@@ -17,6 +17,7 @@ let doit = new Audio();
 let song1 = new Audio();
 let song2 = new Audio();
 let end = new Audio();
+let winsong = new Audio();
 
 
 hit.src = "../Audio/Bamboo hit.mp3";
@@ -24,6 +25,7 @@ doit.src = "../Audio/DOIT.mp3";
 song1.src = "../Audio/song1.mp3";
 song2.src = "../Audio/song2.mp3";
 end.src = "../Audio/ending-opening.mp3";
+winsong.src = "../Audio/win.mp3";
 
 
 const user = {
@@ -41,7 +43,7 @@ const AI = {
     width: 60,
     height: 100,
     color: "WHITE",
-    score: 0
+    score: 11
 }
 
 const ball = {
@@ -71,8 +73,23 @@ const gameover = {
     text: "Game Over"
 }
 
-function drawImage(){
-    ctx.drawImage(img,sX, sY, sW, sH);
+const win = {
+    x: 0,
+    y: canvas.height / 2 - 300 / 2,
+    width: 1000,
+    height: 250,
+    color: "GREEN",
+    text: "Win"
+}
+
+const repeat = {
+    x: 0,
+    y: canvas.height / 2,
+    text: "If you want to try again, press F5 :D"
+}
+
+function drawImage() {
+    ctx.drawImage(img, sX, sY, sW, sH);
 }
 
 function drawRect(x, y, w, h, color) {
@@ -99,7 +116,13 @@ function drawCircle(x, y, r, color) {
 
 function drawText(text, x, y, color) {
     ctx.fillStyle = color;
-    ctx.font = "45px fantasy";
+    ctx.font = "55px fantasy";
+    ctx.fillText(text, x, y);
+}
+
+function drawRepeat(text, x, y, color) {
+    ctx.fillStyle = color;
+    ctx.font = "20px arial";
     ctx.fillText(text, x, y);
 }
 
@@ -118,15 +141,25 @@ function render() {
 
     drawCircle(ball.x, ball.y, ball.radius, ball.color);
 
-    if (AI.score == 15) {
+    if (AI.score == 11) {
         console.log("Game Over");
         end.play();
         /*window.location.href = "../gamover.html";*/
         ball.velocityX = 0;
         ball.velocityY = 0;
         drawRect(gameover.x, gameover.y, gameover.width, gameover.height, gameover.color);
-        drawText(gameover.text, (canvas.width - 200) / 2, canvas.height / 2, "WHITE");
-    }
+        drawText(gameover.text, (canvas.width - 250) / 2, canvas.height / 2, "WHITE");
+        drawRepeat(repeat.text, (canvas.width -290) / 2, (canvas.height + 100) / 2, "WHITE");
+    } else if(user.score == 11){
+        console.log("Win");
+        winsong.play();
+        /*window.location.href = "../gamover.html";*/
+        ball.velocityX = 0;
+        ball.velocityY = 0;
+        drawRect(win.x, win.y, win.width, win.height, win.color);
+        drawText(win.text, (canvas.width - 90) / 2, canvas.height / 2, "WHITE");
+        drawRepeat(repeat.text, (canvas.width -290) / 2, (canvas.height + 100) / 2, "WHITE");
+}
 }
 
 
