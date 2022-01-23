@@ -12,6 +12,7 @@ let american = new Image();
 american.src = '../Img/american.png';
 
 
+let theme = new Audio();
 let hit = new Audio();
 let doit = new Audio();
 let song1 = new Audio();
@@ -20,6 +21,7 @@ let end = new Audio();
 let winsong = new Audio();
 
 
+theme.src = "../Audio/theme.mp3";
 hit.src = "../Audio/Bamboo hit.mp3";
 doit.src = "../Audio/DOIT.mp3";
 song1.src = "../Audio/song1.mp3";
@@ -220,6 +222,7 @@ function resetBall() {
 }
 
 function update() {
+    theme.play();
     // rychlost míčku
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
