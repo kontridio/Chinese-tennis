@@ -43,7 +43,7 @@ const AI = {
     width: 60,
     height: 100,
     color: "WHITE",
-    score: 11
+    score: 0
 }
 
 const ball = {
